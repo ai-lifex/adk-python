@@ -348,6 +348,7 @@ def migrate(source_db_url: str, dest_db_url: str):
 
   logger.info(f"Connecting to destination database: {dest_db_url}")
   try:
+    logger.info(f"Connecting to destination database................")
     dest_engine = create_engine(dest_db_url)
     dss.Base.metadata.create_all(dest_engine)
     DestSession = sessionmaker(bind=dest_engine)
