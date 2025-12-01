@@ -417,7 +417,9 @@ def migrate(source_db_url: str, dest_db_url: str):
             .mappings()
             .all()
         )
-        for row in rows:
+        logger.info(f"Found {len(rows)} sessions.")
+        for i, row in enumerate(rows):
+          logger.debug(f"Adding Session {i}")
           dest_session.merge(
               dss.StorageSession(
                   app_name=row["app_name"],
