@@ -30,7 +30,7 @@ from sqlalchemy.orm import sessionmaker
 logger = logging.getLogger("google_adk." + __name__)
 
 
-def migrate(source_db_url: str, dest_db_path: str):
+async def migrate(source_db_url: str, dest_db_path: str):
   """Migrates data from a SQLAlchemy-based SQLite DB to the new schema."""
   logger.info(f"Connecting to source database: {source_db_url}")
   try:

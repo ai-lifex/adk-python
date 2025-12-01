@@ -336,7 +336,7 @@ class OldStorageUserState(OldBase):
 
 
 # --- Migration Logic ---
-def migrate(source_db_url: str, dest_db_url: str):
+async def migrate(source_db_url: str, dest_db_url: str):
   """Migrates data from old pickle schema to new JSON schema."""
   logger.info(f"Connecting to source database: {source_db_url}")
   try:
@@ -352,6 +352,7 @@ def migrate(source_db_url: str, dest_db_url: str):
     dest_engine = create_engine(dest_db_url)
     logger.info("Destination engine created...........")
     dss.Base.metadata.create_all(dest_engine)
+    logger.info("Destination tables created...........")
     DestSession = sessionmaker(bind=dest_engine)
   except Exception as e:
     logger.error(f"Failed to connect to destination database: {e}")
