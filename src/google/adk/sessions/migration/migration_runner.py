@@ -41,7 +41,7 @@ MIGRATIONS = {
 LATEST_VERSION = _schema_check.CURRENT_SCHEMA_VERSION
 
 
-async def upgrade(source_db_url: str, dest_db_url: str):
+def upgrade(source_db_url: str, dest_db_url: str):
   """Migrates a database from its current version to the latest version.
 
   If the source database schema is older than the latest version, this
@@ -113,7 +113,7 @@ async def upgrade(source_db_url: str, dest_db_url: str):
       logger.info(
           f"Migrating from {in_url} to {out_url} (schema {end_version})..."
       )
-      await migrate_func(in_url, out_url)
+      migrate_func(in_url, out_url)
       logger.info(f"Finished migration step to schema {end_version}.")
       # The output of this step becomes the input for the next step.
       in_url = out_url

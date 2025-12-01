@@ -336,7 +336,7 @@ class OldStorageUserState(OldBase):
 
 
 # --- Migration Logic ---
-async def migrate(source_db_url: str, dest_db_url: str):
+def migrate(source_db_url: str, dest_db_url: str):
   """Migrates data from old pickle schema to new JSON schema."""
   logger.info(f"Connecting to source database: {source_db_url}")
   try:
